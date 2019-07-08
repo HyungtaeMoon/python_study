@@ -7,7 +7,7 @@ Django REST 프레임워크를 사용하면 `ViewSet` 이라고 하는 단일 �
 
 `ViewSet` 클래스는 `.get()` 이나 `.post()` 와 같은 메서드 핸들러를 제공하지 않고 단순히 `.list()` 및 `.create()` 와 같은 액션을 제공하는 클래스 기반 View 유형입니다.
 
-`ViewSet 메서드 핸들러는 `.as_view() 메서드를 사용하여 View 를 마무리 할 시점의 해당 액션에만 바인딩 됩니다.
+ViewSet 메서드 핸들러는 `.as_view()` 메서드를 사용하여 View 를 마무리 할 시점의 해당 액션에만 바인딩 됩니다.
 
 오히려 명시적으로 urlconf 의 ViewSet 의 View 를 등록하는 것보다, 자동으로 urlconf 를 결정하고, router class 가 있는 viewset 을 등록할 수 있습니다.
 
@@ -32,10 +32,10 @@ class UserViewSet(viewsets.ViewSet):
 		return Response(serializer.data)
 		
 	def retrieve(self, request, pk=None):
-	queryset = User.objects.all()
-	user = get_object_or_404(queryset, pk=pk)
-	serializer = UserSerializer(user)
-	return Response(serializer.data)
+		queryset = User.objects.all()
+		user = get_object_or_404(queryset, pk=pk)
+		serializer = UserSerializer(user)
+		return Response(serializer.data)
 ```
 
 필요한 경우 이 viewset 을 다음과 같이 2개의 별도 view 에 바인딩할 수 있습니다.
